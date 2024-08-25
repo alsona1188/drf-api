@@ -71,13 +71,13 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = ['8000-alsona1188-drfapi-wa5t575lh79.ws-eu115.gitpod.io', 
-'drf-api-alsona-0c809e0777a5.herokuapp.com/', 
+os.environ.get('ALLOWED_HOST'), 
 
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-alsona1188-drfapi-wa5t575lh79.ws-eu115.gitpod.io', 
-     os.environ.get('ALLOWED_HOST'),
+    
 ]
 
 
@@ -130,7 +130,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
-    
+
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'drf_api.urls'
