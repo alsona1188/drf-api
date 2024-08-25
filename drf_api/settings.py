@@ -62,7 +62,6 @@ REST_AUTH_SERIALIZERS = {
 }
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -73,9 +72,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 #DEBUG = True
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), 
-'drf-api-alsona-0c809e0777a5.herokuapp.com/'
-
+ALLOWED_HOSTS = [
+    os.environ.get('ALLOWED_HOST', 'localhost'),
+    'drf-api-alsona-0c809e0777a5.herokuapp.com',
 ]
 
 
@@ -130,8 +129,7 @@ if 'CLIENT_ORIGIN' in os.environ:
 
 # tutor Roo rerolled extracting uniquqe part of GitPod preview URL
 if 'CLIENT_ORIGIN_DEV' in os.environ:
-    
-    CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.codeinstitute-ide\.net$",]
+    CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.codeinstitute-ide\.net$"]
 
 CORS_ALLOW_CREDENTIALS = True
 
