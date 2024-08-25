@@ -69,10 +69,14 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 #DEBUG = True
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['8000-alsona1188-drfapi-wa5t575lh79.ws-eu115.gitpod.io', 'localhost', 'drf-api-alsona.herokuapp.com']
+ALLOWED_HOSTS = ['8000-alsona1188-drfapi-wa5t575lh79.ws-eu115.gitpod.io', 'localhost', 
+'https://drf-api-alsona-0c809e0777a5.herokuapp.com/', 
+
+]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-alsona1188-drfapi-wa5t575lh79.ws-eu115.gitpod.io', 'https://drf-api-alsona-0c809e0777a5.herokuapp.com/'
+    'https://8000-alsona1188-drfapi-wa5t575lh79.ws-eu115.gitpod.io', 
+    'https://drf-api-alsona-0c809e0777a5.herokuapp.com/',
 ]
 
 
