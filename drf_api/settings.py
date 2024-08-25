@@ -25,6 +25,7 @@ CLOUDINARY_STORAGE = {
 
 
 MEDIA_URL = '/media/'
+
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,6 +41,7 @@ REST_FRAMEWORK = {
         'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'DATETIME_FORMAT': '%d %b %Y',
+
 }
 if 'DEV' not in os.environ:
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
@@ -73,11 +75,6 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = ['8000-alsona1188-drfapi-wa5t575lh79.ws-eu115.gitpod.io', 
 os.environ.get('ALLOWED_HOST'), 
 
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://8000-alsona1188-drfapi-wa5t575lh79.ws-eu115.gitpod.io', 
-    
 ]
 
 
@@ -125,6 +122,10 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+    ]
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
     CORS_ALLOWED_ORIGIN_REGEXES = [
