@@ -73,11 +73,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
-    os.environ.get('ALLOWED_HOST', 'localhost'),
-    'drf-api-alsona-0c809e0777a5.herokuapp.com',
+    os.environ.get('ALLOWED_HOST', '127.0.0.1'),
+    '8000-alsona1188-drfapi-r7sh69ozp14.ws-eu115.gitpod.io',
 ]
-
-
 
 # Application definition
 
@@ -126,12 +124,23 @@ if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CLIENT_ORIGIN')
     ]
+else:
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        r"^https://.*\.gitpod\.io$",
+    ]
 
-# tutor Roo rerolled extracting uniquqe part of GitPod preview URL
 if 'CLIENT_ORIGIN_DEV' in os.environ:
-    CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.codeinstitute-ide\.net$"]
+    extracted_url = re.match(
+        r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE
+    ).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    ]
+
 
 CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = ['https://8000-alsona1188-drfapi-r7sh69ozp14.ws-eu115.gitpod.io', 'https://*.127.0.0.1']
 
 ROOT_URLCONF = 'drf_api.urls'
 
@@ -168,11 +177,6 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://*.codeinstitute-ide.net/',
-]
-
 
 
 # Password validation
@@ -212,6 +216,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+import django_heroku
+django_heroku.settings(locals())
 
 
 # Default primary key field type
