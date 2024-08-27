@@ -73,10 +73,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
-                os.environ.get('ALLOWED_HOST'),
-                '8000-alsona1188-drfapi-r7sh69ozp14.ws-eu115.gitpod.io',
-                '127.0.0.1',
-                ]
+    os.environ.get('ALLOWED_HOST', 'localhost'),
+    '8000-alsona1188-drfapi-r7sh69ozp14.ws-eu115.gitpod.io',
+    '127.0.0.1',
+]
 
 # Application definition
 
@@ -218,9 +218,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-import django_heroku
-django_heroku.settings(locals())
 
 
 # Default primary key field type
