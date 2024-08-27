@@ -73,9 +73,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
-    os.environ.get('ALLOWED_HOST', '127.0.0.1'),
-    '8000-alsona1188-drfapi-r7sh69ozp14.ws-eu115.gitpod.io',
-]
+                os.environ.get('ALLOWED_HOST'),
+                '8000-alsona1188-drfapi-r7sh69ozp14.ws-eu115.gitpod.io',
+                '127.0.0.1',
+                ]
 
 # Application definition
 
