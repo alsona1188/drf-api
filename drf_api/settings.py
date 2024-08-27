@@ -63,25 +63,25 @@ DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
-    '8000-alsona1188-drfapi-r7sh69ozp14.ws-eu115.gitpod.io',
     'localhost',
-    '127.0.0.1',
+    '.codeinstitute-ide.net',
 ]
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
+        os.environ.get('CLIENT_ORIGIN'),
+        os.environ.get('CLIENT_ORIGIN_DEV'),
+    ]
+else:
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        r"^https://.*\.codeinstitute-ide\.net$",
     ]
 
-if 'CLIENT_ORIGIN_DEV' in os.environ:
-    extracted_url = re.match(
-        r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE
-    ).group(0)
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
-    ]
+CORS_ALLOWED_ORIGINS = ['https://*.herokuapp.com']
 
 CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Application definition
 
@@ -111,6 +111,12 @@ INSTALLED_APPS = [
     'likes',
     'followers',
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.codeinstitute-ide.net',
+    'https://*.herokuapp.com',
+]
+
 SITE_ID = 1
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
