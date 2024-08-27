@@ -132,7 +132,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-alsona1188-drfapi-r7sh69ozp14.ws-eu115.gitpod.io', 'https://*.127.0.0.1', 'https://drf-api-alsona-0c809e0777a5.herokuapp.com',]
+#CSRF_TRUSTED_ORIGINS = ['https://8000-alsona1188-drfapi-r7sh69ozp14.ws-eu115.gitpod.io', 'https://*.127.0.0.1', 'https://drf-api-alsona-0c809e0777a5.herokuapp.com',]
 
 ROOT_URLCONF = 'drf_api.urls'
 
