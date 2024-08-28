@@ -21,6 +21,8 @@ if os.path.exists('env.py'):
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
 }
+
+
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -49,6 +51,12 @@ JWT_AUTH_SAMESITE = 'None'
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer',
 }
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SAMESITE = 'None'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -59,7 +67,8 @@ DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST', '8000-alsona1188-drfapi-1ktob15vve3.ws-eu115.gitpod.io'),
-    'drf-api-alsona-0c809e0777a5.herokuapp.com',
+    'drf-api-alsona-0c809e0777a5.herokuapp.com', 'localhost',
+    '127.0.0.1',
 ]
 
 if "CLIENT_ORIGIN" in os.environ:
@@ -154,7 +163,9 @@ if "DEV" in os.environ:
 else:
     DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-alsona1188-drfapi-1ktob15vve3.ws-eu115.gitpod.io',]
+CSRF_TRUSTED_ORIGINS = ['https://8000-alsona1188-drfapi-1ktob15vve3.ws-eu115.gitpod.io', 
+'https://drf-api-alsona-0c809e0777a5.herokuapp.com',
+'http://localhost:8000',]
 
 
 # Password validation
