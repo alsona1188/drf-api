@@ -48,8 +48,6 @@ JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer',
-    'DEFAULT_PAGINATION_CLASS':  'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
 }
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -64,15 +62,18 @@ ALLOWED_HOSTS = [
     'drf-api-alsona-0c809e0777a5.herokuapp.com',
 ]
 
-if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
+if "CLIENT_ORIGIN" in os.environ:
+    CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
+    
+
+if "CLIENT_ORIGIN_DEV" in os.environ:
+    extracted_url = re.match(
+        r"^([^.]+)", os.environ.get("CLIENT_ORIGIN_DEV", ""), re.IGNORECASE
+    ).group(0)
+
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}.(eu|us)\d+\.codeanyapp\.com$",
     ]
-
-# tutor Roo rerolled extracting uniquqe part of GitPod preview URL
-if 'CLIENT_ORIGIN_DEV' in os.environ:
-
-    CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.codeinstitute-ide\.net$",]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -119,7 +120,7 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 
-ROOT_URLCONF = 'drf_api.urls'
+ROOT_URLCONF = "drf_api.urls"
 
 TEMPLATES = [
     {
@@ -143,21 +144,15 @@ WSGI_APPLICATION = 'drf_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if 'DEV' in os.environ:
+if "DEV" in os.environ:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 else:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-    }
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://*.codeinstitute-ide.net/',
-]
+    DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 
 # Password validation
