@@ -58,7 +58,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
-    os.environ.get('ALLOWED_HOST', 'localhost'),
+    os.environ.get('ALLOWED_HOST', '8000-alsona1188-drfapi-1ktob15vve3.ws-eu115.gitpod.io'),
     'drf-api-alsona-0c809e0777a5.herokuapp.com',
 ]
 
@@ -153,6 +153,8 @@ if "DEV" in os.environ:
     }
 else:
     DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+
+CSRF_TRUSTED_ORIGINS = ['https://8000-alsona1188-drfapi-1ktob15vve3.ws-eu115.gitpod.io',]
 
 
 # Password validation
