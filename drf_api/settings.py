@@ -88,6 +88,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     "https://moments-alsona-cf3b091c83b4.herokuapp.com",
+     "https://drf-api-alsona-0c809e0777a5.herokuapp.com",
 ]
 
 
