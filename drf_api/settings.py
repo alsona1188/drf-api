@@ -86,6 +86,11 @@ if "CLIENT_ORIGIN_DEV" in os.environ:
 
 CORS_ALLOW_CREDENTIALS = True
 
+CORS_ALLOWED_ORIGINS = [
+    "https://moments-alsona-cf3b091c83b4.herokuapp.com",
+]
+
+
 # Application definition
 
 INSTALLED_APPS = [
