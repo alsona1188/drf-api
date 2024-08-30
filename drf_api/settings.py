@@ -96,12 +96,17 @@ else:
     ]
 
 if 'CLIENT_ORIGIN_DEV' in os.environ:
-    extracted_url = re.match(
+    match = re.match(
         r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV'), re.IGNORECASE
-    ).group(0)
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        rf"{extracted_url}(eu|us)\d+[a-z]*\.gitpod\.io$",
-    ]
+    )
+    if match:
+        extracted_url = match.group(0)
+        CORS_ALLOWED_ORIGIN_REGEXES = [
+            rf"{extracted_url}(eu|us)\d+[a-z]*\.gitpod\.io$",
+        ]
+    else:
+        # Handle the case where no match is found
+        raise ValueError("CLIENT_ORIGIN_DEV does not match the expected pattern")
 
 CORS_ALLOW_CREDENTIALS = True
 
