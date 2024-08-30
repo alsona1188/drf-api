@@ -1,16 +1,9 @@
-"""
-ASGI config for drf_api project.
 
-It exposes the ASGI callable as a module-level variable named ``application``.
+from rest_framework import permissions
 
-For more information on this file, see
-https://docs.djangoproject.com/en/3.2/howto/deployment/asgi/
-"""
 
-import os
-
-from django.core.asgi import get_asgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'drf_api.settings')
-
-application = get_asgi_application()
+class IsOwnerOrReadOnly(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj.owner == request.user
