@@ -54,8 +54,9 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = [
     'drf-api-alsona-0c809e0777a5.herokuapp.com',
     'moments-alsona-cf3b091c83b4.herokuapp.com',
-    'localhost',
+    '8000-alsona1188-drfapi-yxy2j3c9s2z.ws-eu115.gitpod.io',
     '127.0.0.1',
+    'localhost'
 ]
 
 # CORS settings
@@ -80,6 +81,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://moments-alsona-cf3b091c83b4.herokuapp.com',
     'https://drf-api-alsona-0c809e0777a5.herokuapp.com',
     'http://localhost:8000',
+    'https://8000-alsona1188-drfapi-yxy2j3c9s2z.ws-eu115.gitpod.io',
 ]
 
 INSTALLED_APPS = [
@@ -100,6 +102,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+
     'corsheaders',
     'comments',
     'followers',
@@ -119,7 +122,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
+    
 ]
 
 ROOT_URLCONF = "drf_api.urls"

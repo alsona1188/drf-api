@@ -1,0 +1,4 @@
+Requirement already satisfied: djangorestframework in /workspace/.pip-modules/lib/python3.12/site-packages (3.12.4)
+Requirement already satisfied: django>=2.2 in /workspace/.pip-modules/lib/python3.12/site-packages (from djangorestframework) (4.2)
+Requirement already satisfied: asgiref<4,>=3.6.0 in /workspace/.pip-modules/lib/python3.12/site-packages (from django>=2.2->djangorestframework) (3.8.1)
+Requirement already satisfied: sqlparse>=0.3.1 in /workspace/.pip-modules/lib/python3.12/site-packages (from django>=2.2->djangorestframework) (0.5.1)
