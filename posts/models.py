@@ -29,10 +29,8 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
     image = models.ImageField(
-        upload_to='images/', default='https://res.cloudinary.com/dbu8nqoae/image/upload/v1/media/default_post_htbmpw'
+        upload_to='images/', default='../default_post_htbmpw', blank=True
     )
-   
-
     image_filter = models.CharField(
         max_length=32, choices=image_filter_choices, default='normal'
     )
