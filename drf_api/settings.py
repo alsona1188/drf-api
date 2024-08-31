@@ -78,7 +78,8 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
     'localhost',
-    '8000-alsona1188-drfapi-x83bv6ccg0k.ws-eu115.gitpod.io'
+    '8000-alsona1188-drfapi-x83bv6ccg0k.ws-eu115.gitpod.io',
+    'http://localhost:3000'
 ]
 
 if 'CLIENT_ORIGIN' in os.environ:
