@@ -78,7 +78,7 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
     'localhost',
-    '8000-alsona1188-drfapi-yxy2j3c9s2z.ws-eu115.gitpod.io'
+    '8000-alsona1188-drfapi-x83bv6ccg0k.ws-eu115.gitpod.io'
 ]
 
 if 'CLIENT_ORIGIN' in os.environ:
@@ -107,7 +107,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-alsona1188-drfapi-yxy2j3c9s2z.ws-eu115.gitpod.io',
+    'https://8000-alsona1188-drfapi-x83bv6ccg0k.ws-eu115.gitpod.io',
     'https://moments-alsona-cf3b091c83b4.herokuapp.com',
     'https://drf-api-alsona-0c809e0777a5.herokuapp.com',
     'http://localhost:8000',
@@ -141,6 +141,13 @@ INSTALLED_APPS = [
     'likes',
     'followers',
 ]
+
+# Ensure AUTHENTICATION_BACKENDS includes allauth
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 SITE_ID = 1
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
