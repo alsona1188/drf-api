@@ -82,6 +82,24 @@ ALLOWED_HOSTS = [
     'http://localhost:3000'
 ]
 
+# REST_AUTH settings
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'my-app-auth',
+    'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+    'JWT_AUTH_SECURE': True,
+    'JWT_AUTH_SAMESITE': 'None',
+    'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer',
+    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=int(os.environ.get('ACCESS_TOKEN_LIFETIME', 3600))),
+    'REFRESH_TOKEN_LIFETIME': timedelta(seconds=int(os.environ.get('REFRESH_TOKEN_LIFETIME', 86400))),
+}
+
+# JWT settings (optional, depending on your JWT configuration)
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': REST_AUTH['ACCESS_TOKEN_LIFETIME'],
+    'REFRESH_TOKEN_LIFETIME': REST_AUTH['REFRESH_TOKEN_LIFETIME'],
+}
+
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
         origin
@@ -111,7 +129,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://8000-alsona1188-drfapi-x83bv6ccg0k.ws-eu115.gitpod.io',
     'https://moments-alsona-cf3b091c83b4.herokuapp.com',
     'https://drf-api-alsona-0c809e0777a5.herokuapp.com',
-    'http://localhost:8000',
+    'http://localhost:3000',
 ]
 
 # Application definition
