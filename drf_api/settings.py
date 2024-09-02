@@ -28,33 +28,20 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthentication'
         if 'DEV' in os.environ
         else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
-    ],
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAdminUser',
-    ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    )],
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'DATETIME_FORMAT': '%d %b %Y',
 }
-
-# Conditionally add DEFAULT_RENDERER_CLASSES
 if 'DEV' not in os.environ:
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
         'rest_framework.renderers.JSONRenderer',
     ]
-
-# Add TokenAuthentication to the authentication classes if it is not in DEV mode
-if 'DEV' not in os.environ:
-    REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
-        'rest_framework.authentication.TokenAuthentication'
-    )
-
 
 REST_USE_JWT = True
 JWT_AUTH_SECURE = True
@@ -107,7 +94,6 @@ REST_AUTH = {
     'REFRESH_TOKEN_LIFETIME': timedelta(seconds=int(os.environ.get('REFRESH_TOKEN_LIFETIME', 86400))),
 }
 
-
 # JWT settings (optional, depending on your JWT configuration)
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': REST_AUTH['ACCESS_TOKEN_LIFETIME'],
@@ -126,10 +112,12 @@ else:
        r"^https://.*\.gitpod\.io$",
     ]
 
-CORS_ALLOWED_ORIGINS = ['https://*.herokuapp.com', 'https://*.gitpod.io']
+CORS_ALLOWED_ORIGINS = ['https://*.herokuapp.com']
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
+
+
 
 
 CSRF_TRUSTED_ORIGINS = [
