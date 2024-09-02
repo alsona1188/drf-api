@@ -101,31 +101,28 @@ SIMPLE_JWT = {
 }
 
 # CORS settings
+CORS_ALLOWED_ORIGINS = []
 
-# CORS settings
+# Add production origin
 if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get("CLIENT_ORIGIN"),  # Production origin
-    ]
+    CORS_ALLOWED_ORIGINS.append(os.environ.get('CLIENT_ORIGIN'))
 
+# Add development origin (Gitpod)
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     dev_origin = os.environ.get('CLIENT_ORIGIN_DEV')
-    
-    # Extract the base URL from CLIENT_ORIGIN_DEV
     extracted_url = re.match(r'^https://[^/]+', dev_origin).group(0)
-    
-    # Add both the extracted URL and the full CLIENT_ORIGIN_DEV URL to the allowed origins
     CORS_ALLOWED_ORIGINS.append(dev_origin)
     CORS_ALLOWED_ORIGIN_REGEXES = [
         rf"{extracted_url}.*\.gitpod\.io$",
     ]
-else:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.gitpod\.io$",
-    ]
+
+# Adding wildcard for Heroku domains
+CORS_ALLOWED_ORIGINS += [
+    'https://*.herokuapp.com',
+]
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ALLOWED_ORIGINS = ['https://*.herokuapp.com']
 
