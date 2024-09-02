@@ -78,10 +78,9 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
     'localhost',
-    '8000-alsona1188-drfapi-uiiprxy9g5f.ws-eu115.gitpod.io',
-    '3000-alsona1188-moments-w6jv1ik552t.ws-eu115.gitpod.io',
-    'drf-api-alsona-0c809e0777a5.herokuapp.com'
-]
+    'herokuapp.com',   
+    '.gitpod.io',
+    ]
 
 # REST_AUTH settings
 REST_AUTH = {
@@ -126,15 +125,14 @@ else:
     ]
 
 CORS_ALLOW_CREDENTIALS = True
-ORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOWED_ORIGINS = ['https://*.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-alsona1188-drfapi-uiiprxy9g5f.ws-eu115.gitpod.io',
-    'https://moments-alsona-cf3b091c83b4.herokuapp.com',
-    'https://drf-api-alsona-0c809e0777a5.herokuapp.com',
-    'https://3000-alsona1188-moments-w6jv1ik552t.ws-eu115.gitpod.io',
+    'https://*.herokuapp.com',
+    'https://*.gitpod.io',
 ]
-
 # Application definition
 
 INSTALLED_APPS = [
