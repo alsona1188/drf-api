@@ -101,30 +101,32 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': REST_AUTH['REFRESH_TOKEN_LIFETIME'],
 }
 
+# CORS settings
+
+# CORS settings
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        origin
-        for origin in [
-            os.environ.get("CLIENT_ORIGIN"),
-            os.environ.get("STEROID_ORIGIN"),
-            os.environ.get("LOCAL_ORIGIN"),
-        ]
-        if origin
+        os.environ.get("CLIENT_ORIGIN"),  # Production origin
+    ]
+
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    dev_origin = os.environ.get('CLIENT_ORIGIN_DEV')
+    
+    # Extract the base URL from CLIENT_ORIGIN_DEV
+    extracted_url = re.match(r'^https://[^/]+', dev_origin).group(0)
+    
+    # Add both the extracted URL and the full CLIENT_ORIGIN_DEV URL to the allowed origins
+    CORS_ALLOWED_ORIGINS.append(dev_origin)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}.*\.gitpod\.io$",
     ]
 else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         r"^https://.*\.gitpod\.io$",
     ]
 
-if 'CLIENT_ORIGIN_DEV' in os.environ:
-    extracted_url = re.match(
-        r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV'), re.IGNORECASE
-    ).group(0)
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        rf"{extracted_url}(eu|us)\d+[a-z]*\.gitpod\.io$",
-    ]
-
 CORS_ALLOW_CREDENTIALS = True
+ORS_ORIGIN_ALLOW_ALL = True
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-alsona1188-drfapi-uiiprxy9g5f.ws-eu115.gitpod.io',
