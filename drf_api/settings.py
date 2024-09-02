@@ -100,35 +100,25 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': REST_AUTH['REFRESH_TOKEN_LIFETIME'],
 }
 
+
 # CORS settings
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        origin
-        for origin in [
-            os.environ.get("CLIENT_ORIGIN"),
-            os.environ.get("STEROID_ORIGIN"),
-            os.environ.get("LOCAL_ORIGIN"),
-        ]
-        if origin
+        os.environ.get('CLIENT_ORIGIN'),
+        os.environ.get('CLIENT_ORIGIN_DEV'),
     ]
 else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.gitpod\.io$",
+       r"^https://.*\.gitpod\.io$",
     ]
-
-if 'CLIENT_ORIGIN_DEV' in os.environ:
-    extracted_url = re.match(
-        r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV'), re.IGNORECASE
-    ).group(0)
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        rf"{extracted_url}(eu|us)\d+[a-z]*\.gitpod\.io$",
-    ]
-
-CORS_ALLOW_CREDENTIALS = True
-ORS_ORIGIN_ALLOW_ALL = True
-
 
 CORS_ALLOWED_ORIGINS = ['https://*.herokuapp.com']
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+
+
+
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.herokuapp.com',
