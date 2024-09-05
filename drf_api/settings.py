@@ -125,11 +125,16 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     ).group(0)
     CORS_ALLOWED_ORIGIN_REGEXES = [
         rf"{extracted_url}(eu|us)\d+[a-z]*\.gitpod\.io$",
+        r"^https://drf-api-alsona-0c809e0777a5\.herokuapp\.com$",
     ]
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGINS = ['https://*.herokuapp.com', 'https://3000-alsona1188-moments-3xmqcwnkh3u.ws-eu115.gitpod.io']
+CORS_ALLOWED_ORIGINS = ['https://*.herokuapp.com', 
+'https://3000-alsona1188-moments-3xmqcwnkh3u.ws-eu115.gitpod.io',
+"https://drf-api-alsona-0c809e0777a5.herokuapp.com",
+
+]
 
 
 CSRF_TRUSTED_ORIGINS = [
