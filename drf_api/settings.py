@@ -80,6 +80,7 @@ ALLOWED_HOSTS = [
     'localhost',
     'herokuapp.com',   
     '.gitpod.io',
+    'https://3000-alsona1188-moments-3xmqcwnkh3u.ws-eu115.gitpod.io/'
     ]
 
 # REST_AUTH settings
@@ -128,10 +129,11 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGINS = ['https://*.herokuapp.com']
+CORS_ALLOWED_ORIGINS = ['https://*.herokuapp.com', 'https://3000-alsona1188-moments-3xmqcwnkh3u.ws-eu115.gitpod.io/']
 
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://3000-alsona1188-moments-3xmqcwnkh3u.ws-eu115.gitpod.io/',
     'https://*.herokuapp.com',
     'https://*.gitpod.io',
 ]
